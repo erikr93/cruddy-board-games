@@ -1,6 +1,9 @@
 var express = require('express');
 var path = require('path');
+var ejsLayouts = require("express-ejs-layouts");
+
 var app = express();
+app.use(ejsLayouts);
 
 // this sets a static directory for the views
 app.use(express.static(path.join(__dirname, 'static')));
@@ -19,7 +22,7 @@ var GAMES = [
 ];
 
 app.get('/', function(req, res) {
-  res.render('index', {games: GAMES});
+  res.render('home', {games: GAMES});
 });
 
 var port = 3000;
