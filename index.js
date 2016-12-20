@@ -15,10 +15,18 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 app.set('view engine', 'ejs');
 
+// Read
 app.get('/', function(req, res) {
   res.render('home', {games: getGames()});
 });
 
+app.get('/boardgames/:id', function(req, res) {
+  var game = getGames()[req.params.id];
+  game.id = req.params.id;
+  res.render('boardgame-detail', {game: game});
+});
+
+// Create
 app.get('/boardgames/new', function(req, res) {
   res.render('boardgame-create');
 });
@@ -32,20 +40,32 @@ app.post('/boardgames', function(req, res) {
   res.redirect(path);
 });
 
+// Update
 app.get('/boardgames/:id/edit', function(req, res) {
   var game = getGames()[req.params.id];
+  game.id = req.params.id;
   res.render('boardgame-edit', {game: game});
 });
 
 app.put('/boardgames/:id', function(req, res) {
   console.log("body:", req.body);
+
+  var games = getGames();
+  games[req.params.id] = req.body;
+  saveGames(games);
+
   res.send(req.body);
 });
 
-app.get('/boardgames/:id', function(req, res) {
-  var game = getGames()[req.params.id];
-  game.id = req.params.id;
-  res.render('boardgame-detail', {game: game});
+// Delete
+app.delete('/boardgames/:id', function(req, res) {
+  var games = getGames();
+
+  // Set the index to undefined so every other position isn't screwed up.
+  games[req.params.id] = undefined;
+  saveGames(games);
+
+  res.send(req.body);
 });
 
 // Read list of games from file.
