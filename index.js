@@ -1,5 +1,6 @@
 var express = require('express');
 var path = require('path');
+var fs = require('fs');
 var ejsLayouts = require("express-ejs-layouts");
 
 var app = express();
@@ -19,23 +20,16 @@ app.get('/boardgames/:id', function(req, res) {
   res.render('boardgame-detail', {game: game});
 });
 
-// Returns a list of all games.
+// Read list of games from file.
 function getGames() {
-  var games = [
-    {
-      name: "Settlers of Catan",
-      description: "Build, trade, score points."
-    },
-    {
-      name: "Risk",
-      description: "Battle, roll dice, kill."
-    },
-    {
-      name: "Stratego",
-      description: "Hidden battle configuration tap tap who are you dead game. Two players."
-    }
-  ];
+  var fileContents = fs.readFileSync('./games.json');
+  var games = JSON.parse(fileContents);
   return games;
+}
+
+// Write list of games to file.
+function saveGames(games) {
+  fs.writeFileSync('./games.json', JSON.stringify(games));
 }
 
 var port = 3000;
