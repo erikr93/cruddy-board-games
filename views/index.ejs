@@ -14,9 +14,13 @@
 
     <div>
       <ul>
-        <li>Settlers of Catan</li>
-        <li>Risk</li>
-        <li>Stratego</li>
+        <% for (var i = 0; i < games.length; i++) { %>
+          <li>
+            <a href="#">edit</a>
+            <a href="#">delete</a>
+            <a href="#"><%= games[i].name %></a>
+          </li>
+        <% } %>
       </ul>
     </div>
   </body>

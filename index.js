@@ -7,8 +7,21 @@ app.use(express.static(path.join(__dirname, 'static')));
 
 app.set('view engine', 'ejs');
 
+var GAMES = [
+  {
+    name: "Settlers of Catan",
+    description: "Build, trade, score points."
+  },
+  {
+    name: "Risk",
+    description: "Battle, roll dice, kill."
+  }
+];
+
 app.get('/', function(req, res) {
-  res.render('index');
+  res.render('index', {games: GAMES});
 });
 
-app.listen(3000);
+var port = 3000;
+console.log("http://localhost:" + port);
+app.listen(port);
