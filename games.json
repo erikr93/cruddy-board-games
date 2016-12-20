@@ -10,5 +10,21 @@
   {
     "name": "Stratego",
     "description": "Hidden battle configuration tap tap who are you dead game. Two players."
+  },
+  {
+    "name": "Formula D",
+    "description": "Awesome 2-10 player car racing game."
+  },
+  {
+    "name": "Carcassonne",
+    "description": "Lightweight tile-placing game. Very good snack game with minimal set up."
+  },
+  {
+    "name": "Dominion",
+    "description": "2-4 player Deck-building game. High replay value. Many expansions."
+  },
+  {
+    "name": "Candyland",
+    "description": "Not a game. Literally zero choices."
   }
 ]
