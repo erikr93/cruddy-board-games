@@ -1,0 +1,22 @@
+{
+  "name": "boardgames",
+  "version": "1.0.0",
+  "description": "a site where we keep track of our board game collection",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "board",
+    "game",
+    "catan",
+    "settlers",
+    "dev"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.5.5",
+    "express": "^4.14.0"
+  }
+}
