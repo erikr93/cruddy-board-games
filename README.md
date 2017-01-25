@@ -31,45 +31,45 @@ creates an AJAX request instead.
 <tbody>
 <tr>
 <td>GET</td>
-<td>/teams</td>
+<td>/games</td>
 <td>index</td>
-<td>display a list of all teams</td>
+<td>display a list of all games</td>
 </tr>
 <tr>
 <td>GET</td>
-<td>/teams/new</td>
+<td>/games/new</td>
 <td>new</td>
-<td>return an HTML form for creating a new team</td>
+<td>return an HTML form for creating a new game</td>
 </tr>
 <tr>
 <td>POST</td>
-<td>/teams</td>
+<td>/games</td>
 <td>create</td>
-<td>create a new team (using form data from /teams/new)</td>
+<td>create a new game (using form data from /games/new)</td>
 </tr>
 <tr>
 <td>GET</td>
-<td>/teams/:name</td>
+<td>/games/:name</td>
 <td>show</td>
-<td>display a specific team</td>
+<td>display a specific game</td>
 </tr>
 <tr>
 <td>GET</td>
-<td>/teams/:name/edit</td>
+<td>/games/:name/edit</td>
 <td>edit</td>
-<td>return an HTML form for editing a team</td>
+<td>return an HTML form for editing a game</td>
 </tr>
 <tr>
 <td>PUT</td>
-<td>/teams/:name</td>
+<td>/games/:name</td>
 <td>update</td>
-<td>update a specific team (using form data from /teams/:name/edit)</td>
+<td>update a specific game (using form data from /games/:name/edit)</td>
 </tr>
 <tr>
 <td>DELETE</td>
-<td>/teams/:name</td>
+<td>/games/:name</td>
 <td>destroy</td>
-<td>deletes a specific team</td>
+<td>deletes a specific game</td>
 </tr>
 </tbody>
 </table>
