@@ -11,73 +11,76 @@ app.use(ejsLayouts);
 app.use(express.static(path.join(__dirname, 'static')));
 
 // tell your app to use the module
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.set('view engine', 'ejs');
 
-// Read
+// index
 app.get('/', function(req, res) {
-  res.render('home', {games: getGames()});
+    res.render('home', { games: getGames() });
 });
 
-app.get('/boardgames/:id', function(req, res) {
-  var game = getGames()[req.params.id];
-  game.id = req.params.id;
-  res.render('boardgame-detail', {game: game});
-});
-
-// Create
+// new
 app.get('/boardgames/new', function(req, res) {
-  res.render('boardgame-create');
+    res.render('boardgame-create');
 });
 
+// show
+app.get('/boardgames/:id', function(req, res) {
+    var game = getGames()[req.params.id];
+    game.id = req.params.id;
+    res.render('boardgame-detail', { game: game });
+});
+
+// post
 app.post('/boardgames', function(req, res) {
-  var games = getGames();
-  games.push(req.body);
-  saveGames(games);
+    var games = getGames();
+    games.push(req.body);
+    saveGames(games);
 
-  var path = '/boardgames/' + (games.length - 1);
-  res.redirect(path);
+    var path = '/boardgames/' + (games.length - 1);
+    res.redirect(path);
 });
 
-// Update
+// Update page
 app.get('/boardgames/:id/edit', function(req, res) {
-  var game = getGames()[req.params.id];
-  game.id = req.params.id;
-  res.render('boardgame-edit', {game: game});
+    var game = getGames()[req.params.id];
+    game.id = req.params.id;
+    res.render('boardgame-edit', { game: game });
 });
 
+// update
 app.put('/boardgames/:id', function(req, res) {
-  console.log("body:", req.body);
+    console.log("body:", req.body);
 
-  var games = getGames();
-  games[req.params.id] = req.body;
-  saveGames(games);
+    var games = getGames();
+    games[req.params.id] = req.body;
+    saveGames(games);
 
-  res.send(req.body);
+    res.send(req.body);
 });
 
 // Delete
 app.delete('/boardgames/:id', function(req, res) {
-  var games = getGames();
+    var games = getGames();
 
-  // Set the index to undefined so every other position isn't screwed up.
-  games[req.params.id] = undefined;
-  saveGames(games);
+    // Set the index to undefined so every other position isn't screwed up.
+    games[req.params.id] = undefined;
+    saveGames(games);
 
-  res.send(req.body);
+    res.send(req.body);
 });
 
 // Read list of games from file.
 function getGames() {
-  var fileContents = fs.readFileSync('./games.json');
-  var games = JSON.parse(fileContents);
-  return games;
+    var fileContents = fs.readFileSync('./games.json');
+    var games = JSON.parse(fileContents);
+    return games;
 }
 
 // Write list of games to file.
 function saveGames(games) {
-  fs.writeFileSync('./games.json', JSON.stringify(games));
+    fs.writeFileSync('./games.json', JSON.stringify(games));
 }
 
 var port = 3000;
